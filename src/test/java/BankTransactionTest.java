@@ -10,7 +10,7 @@ public class BankTransactionTest {
         BankTransaction bt = new BankTransaction(initialBalance);
         double expected = 100.0;
         double actual = bt.getBalance();
-        fail();
+        assertEquals(expected, actual, 0.001);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class BankTransactionTest {
         double expected = 0.0;
         double actual = bt.getBalance();
         assertEquals(expected, actual, 0.001);
-        fail();
+        assertNotEquals(initialBalance, actual, 0.001);
     }
 
     @Test
@@ -28,11 +28,11 @@ public class BankTransactionTest {
         BankTransaction bt = new BankTransaction(100.0);
         double depositAmount = 50.0;
         boolean depositResult = bt.deposit(depositAmount);
-        fail();
+        assertTrue(depositResult);
 
         double expected = 150.0;
         double actual = bt.getBalance();
-        fail();
+        assertEquals(expected, actual, 0.001);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BankTransactionTest {
 
         double expected = 100.0;
         double actual = bt.getBalance();
-        fail();
+        assertEquals(expected, actual, 0.001);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class BankTransactionTest {
         BankTransaction bt = new BankTransaction(100.0);
         double withdrawalAmount = 50.0;
         boolean withdrawalResult = bt.withdraw(withdrawalAmount);
-        fail();
+        assertTrue(withdrawalResult);
 
         double expected = 50.0;
         double actual = bt.getBalance();
@@ -64,11 +64,11 @@ public class BankTransactionTest {
         BankTransaction bt = new BankTransaction(50.0);
         double withdrawalAmount = 100.0;
         boolean withdrawalResult = bt.withdraw(withdrawalAmount);
-        fail();
+        assertFalse(withdrawalResult);
 
         double expected = 50.0;
         double actual = bt.getBalance();
-        fail();
+        assertEquals(expected, actual, 0.001);
     }
 
     @Test
@@ -76,22 +76,22 @@ public class BankTransactionTest {
         BankTransaction bt = new BankTransaction(100.0);
         double withdrawalAmount = -50.0;
         boolean withdrawalResult = bt.withdraw(withdrawalAmount);
-        fail();
+        assertFalse(withdrawalResult);
 
         double expected = 100.0;
         double actual = bt.getBalance();
-        fail();
+        assertEquals(expected, actual, 0.001);
     }
     
     @Test
     public void testNotNullBankTransaction() {
         BankTransaction bt = new BankTransaction(100.0);
-        fail();
+        assertNotNull(bt);
     }
 
     @Test
     public void testNullBankTransaction() {
         BankTransaction bt = null;
-        fail();
+        assertNull(bt);
     }
 }
